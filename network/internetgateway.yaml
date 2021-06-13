@@ -8,6 +8,6 @@ metadata:
 spec:
   providerRef:
     name: dv-aws-provider
-  reclaimPolicy: Delete
+  deletionPolicy: Delete
   vpcIdRef:
     name: this-vpc

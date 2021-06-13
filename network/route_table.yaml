@@ -18,6 +18,6 @@ spec:
           name: subnet-b
       - subnetIdRef:
           name: subnet-c
-  reclaimPolicy: Delete
+  deletionPolicy: Delete
   providerRef:
     name: this-aws-provider

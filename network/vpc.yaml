@@ -8,6 +8,6 @@ spec:
     cidrBlock: 192.168.0.0/16
     enableDnsSupport: true
     enableDnsHostNames: true
-  reclaimPolicy: Delete
+  deletionPolicy: Delete
   providerRef:
     name: this-aws-provider
