@@ -8,10 +8,12 @@ spec:
     cidrBlock: 192.168.64.0/18
     vpcIdRef:
       name: this-vpc
-    availabilityZone: $(REGION)a
+    availabilityZone: us-east-1a
   deletionPolicy: Delete
   providerRef:
-    name: this-aws-provider
+    name: provider-aws
+  providerConfigRef:
+    name: aws-provider
 ---
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: Subnet
@@ -22,10 +24,13 @@ spec:
     cidrBlock: 192.168.128.0/18
     vpcIdRef:
       name: this-vpc
-    availabilityZone: $(REGION)b
+    availabilityZone: us-east-1b
   deletionPolicy: Delete
   providerRef:
-    name: this-aws-provider
+    name: provider-aws
+  providerConfigRef:
+    name: aws-provider
+
 ---
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: Subnet
@@ -36,7 +41,9 @@ spec:
     cidrBlock: 192.168.192.0/18
     vpcIdRef:
       name: this-vpc
-    availabilityZone: $(REGION)c
+    availabilityZone: us-east-1c
   deletionPolicy: Delete
   providerRef:
-    name: this-aws-provider
+    name: provider-aws
+  providerConfigRef:
+    name: aws-provider

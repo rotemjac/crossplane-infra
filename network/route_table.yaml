@@ -7,7 +7,7 @@ spec:
   forProvider:
     vpcIdRef:
       name: this-vpc
-    region: $(REGION)
+    region: us-east-1
     routes:
       - destinationCidrBlock: 0.0.0.0/0
         gatewayIdRef:
@@ -21,4 +21,6 @@ spec:
           name: subnet-c
   deletionPolicy: Delete
   providerRef:
-    name: this-aws-provider
+    name: provider-aws
+  providerConfigRef:
+    name: aws-provider

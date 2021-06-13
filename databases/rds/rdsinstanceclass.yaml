@@ -38,4 +38,6 @@ spec:
       value: dv-rds
   reclaimPolicy: Delete
   providerRef:
-    name: this-aws-provider
+    name: provider-aws
+  providerConfigRef:
+    name: aws-provider
