@@ -9,7 +9,7 @@ spec:
     vpcIdRef:
       name: this-vpc
     availabilityZone: $(REGION)a
-  DeletionPolicy: Delete
+  deletionPolicy: Delete
   providerRef:
     name: this-aws-provider
 ---
@@ -37,6 +37,6 @@ spec:
     vpcIdRef:
       name: this-vpc
     availabilityZone: $(REGION)c
-  reclaimPolicy: Delete
+  deletionPolicy: Delete
   providerRef:
     name: this-aws-provider

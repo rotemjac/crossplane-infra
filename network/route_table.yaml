@@ -7,6 +7,7 @@ spec:
   forProvider:
     vpcIdRef:
       name: this-vpc
+    region: $(REGION)
     routes:
       - destinationCidrBlock: 0.0.0.0/0
         gatewayIdRef:

@@ -6,8 +6,9 @@ metadata:
     provider: aws
   name: this-igw
 spec:
+  forProvider:
+    vpcIdRef:
+      name: this-vpc
   providerRef:
     name: dv-aws-provider
   deletionPolicy: Delete
-  vpcIdRef:
-    name: this-vpc
