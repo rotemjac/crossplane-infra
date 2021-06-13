@@ -1,0 +1,41 @@
+---
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstanceClass
+metadata:
+  labels:
+    engine: mysql
+    region: east
+  name: dv-rds
+specTemplate:
+  forProvider:
+    allocatedStorage: 20
+    dbInstanceClass: db.t2.small
+    dbSubnetGroupNameRef:
+      name: this-rds
+    engine: mysql
+    masterUsername: masteruser
+    skipFinalSnapshotBeforeDeletion: true
+    vpcSecurityGroupIDRefs:
+      - name: this-rds-sg
+  providerRef:
+    name: this-aws-provider
+  reclaimPolicy: Delete
+  writeConnectionSecretsToNamespace: crossplane-system
+---
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: DBSubnetGroup
+metadata:
+  name: this-rds-subnet-group
+spec:
+  groupName: dv-rds
+  description: EKS vpc to rds
+  subnetIdRefs:
+    - name: this-subnet-a
+    - name: this-subnet-b
+    - name: this-subnet-c
+  tags:
+    - key: name
+      value: dv-rds
+  reclaimPolicy: Delete
+  providerRef:
+    name: this-aws-provider

@@ -1,0 +1,22 @@
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: SecurityGroup
+metadata:
+  labels:
+    provider: aws
+  name: this-rds-sg
+spec:
+  description: security group for dv rds
+  groupName: dv-rds-sg
+  ingress:
+    - cidrBlocks:
+        - cidrIp: 0.0.0.0/0
+          description: all ips
+      fromPort: 3306
+      protocol: tcp
+      toPort: 3306
+  providerRef:
+    name: this-aws-provider
+  reclaimPolicy: Delete
+  vpcIdRef:
+    name: this-vpc

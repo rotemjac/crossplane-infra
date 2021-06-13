@@ -1,0 +1,13 @@
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: InternetGateway
+metadata:
+  labels:
+    provider: aws
+  name: this-igw
+spec:
+  providerRef:
+    name: dv-aws-provider
+  reclaimPolicy: Delete
+  vpcIdRef:
+    name: this-vpc
