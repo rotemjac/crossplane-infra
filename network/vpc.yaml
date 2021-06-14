@@ -10,7 +10,5 @@ spec:
     enableDnsSupport: true
     enableDnsHostNames: true
   deletionPolicy: Delete
-  providerRef:
-    name: provider-aws
   providerConfigRef:
     name: aws-provider
