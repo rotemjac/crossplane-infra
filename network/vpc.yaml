@@ -11,4 +11,4 @@ spec:
     enableDnsHostNames: true
   deletionPolicy: Delete
   providerConfigRef:
-    name: aws-provider
+    name: aws-provider-config

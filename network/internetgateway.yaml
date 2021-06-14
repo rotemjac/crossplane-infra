@@ -9,8 +9,6 @@ spec:
   forProvider:
     vpcIdRef:
       name: this-vpc
-  providerRef:
-    name: provider-aws
   providerConfigRef:
-    name: aws-provider
+    name: aws-provider-config
   deletionPolicy: Delete

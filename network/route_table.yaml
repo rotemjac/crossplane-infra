@@ -20,7 +20,5 @@ spec:
       - subnetIdRef:
           name: subnet-c
   deletionPolicy: Delete
-  providerRef:
-    name: provider-aws
   providerConfigRef:
-    name: aws-provider
+    name: aws-provider-config

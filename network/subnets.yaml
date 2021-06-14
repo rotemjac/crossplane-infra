@@ -10,10 +10,8 @@ spec:
       name: this-vpc
     availabilityZone: us-east-1a
   deletionPolicy: Delete
-  providerRef:
-    name: provider-aws
   providerConfigRef:
-    name: aws-provider
+    name: aws-provider-config
 ---
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: Subnet
@@ -26,10 +24,8 @@ spec:
       name: this-vpc
     availabilityZone: us-east-1b
   deletionPolicy: Delete
-  providerRef:
-    name: provider-aws
   providerConfigRef:
-    name: aws-provider
+    name: aws-provider-config
 
 ---
 apiVersion: ec2.aws.crossplane.io/v1beta1
@@ -43,7 +39,5 @@ spec:
       name: this-vpc
     availabilityZone: us-east-1c
   deletionPolicy: Delete
-  providerRef:
-    name: provider-aws
   providerConfigRef:
-    name: aws-provider
+    name: aws-provider-config
