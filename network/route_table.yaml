@@ -14,11 +14,11 @@ spec:
           name: this-igw
     associations:
       - subnetIdRef:
-          name: subnet-a
+          name: this-subnet-a
       - subnetIdRef:
-          name: subnet-b
+          name: this-subnet-b
       - subnetIdRef:
-          name: subnet-c
+          name: this-subnet-c
   deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider-config
