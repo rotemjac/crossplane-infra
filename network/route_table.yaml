@@ -11,7 +11,7 @@ spec:
     routes:
       - destinationCidrBlock: 0.0.0.0/0
         gatewayIdRef:
-          name: internetgateway
+          name: this-igw
     associations:
       - subnetIdRef:
           name: subnet-a
