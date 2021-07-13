@@ -20,10 +20,10 @@ spec:
     roleArnRef:
       name: this-eks-iam-role
 
-    logging:
-      clusterLogging:
-        - enabled: true
-        - types: ["api","audit","authenticator","controllerManager","scheduler"]
+    #logging:
+    #  clusterLogging:
+    #    - enabled: true
+    #    - types: ["api","audit","authenticator","controllerManager","scheduler"]
 
     version : "1.19"
 
