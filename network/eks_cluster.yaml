@@ -1,0 +1,61 @@
+---
+apiVersion: eks.aws.crossplane.io/v1beta1
+kind: Cluster
+metadata:
+  name: this-eks-cluster
+spec:
+  forProvider:
+    region: us-east-1
+
+    resourcesVpcConfig:
+      endpointPrivateAccess: false
+      enpointPublicAccess: true
+      subnetIdRefs:
+        - name: this-subnet-a
+        - name: this-subnet-b
+        - name: this-subnet-c
+
+      publicAccessCidrs : ["0.0.0.0/0"]
+
+    roleARNRef:
+      name: this-eks-iam-role
+
+    logging:
+      clusterLogging:
+        enabled: true
+        types: ["api","audit","authenticator","controllerManager","scheduler"]
+
+    version : "1.19"
+
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider-config
+
+---
+apiVersion: eks.aws.crossplane.io/v1alpha1
+kind: NodeGroup
+metadata:
+  name: this-eks-node-group
+spec:
+  forProvider:
+    region: us-east-1
+    clusterNameRef:
+      name: this-eks-cluster
+    subnetRefs:
+      - name: this-subnet-a
+      - name: this-subnet-b
+      - name: this-subnet-c
+
+    instanceTypes: ["t3.medium"]
+    amiType: "AL2_x86_64"
+    diskSize: 20
+
+    scaling_config:
+      - desired_size: 2
+      - max_size: 2
+      - min_size: 2
+
+
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider-config
