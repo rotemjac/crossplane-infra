@@ -32,30 +32,58 @@ spec:
     name: aws-provider-config
 
 ---
-apiVersion: eks.aws.crossplane.io/v1alpha1
-kind: NodeGroup
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRole
 metadata:
-  name: this-eks-node-group
+  labels:
+    provider: aws
+  name: this-eks-iam-role
 spec:
   forProvider:
-    region: us-east-1
-    clusterNameRef:
-      name: this-eks-cluster
-    subnetRefs:
-      - name: this-subnet-a
-      - name: this-subnet-b
-      - name: this-subnet-c
+    assumeRolePolicyDocument: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "eks.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
 
-    instanceTypes: ["t3.medium"]
-    amiType: "AL2_x86_64"
-    diskSize: 20
-
-    scalingConfig:
-      desiredSize: 2
-      maxSize: 2
-      minSize: 2
-
-
-  deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider-config
+  deletionPolicy: Delete
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRolePolicyAttachment
+metadata:
+  name: this-role-servicepolicy
+spec:
+  forProvider:
+    roleNameRef:
+      name: this-eks-iam-role
+    # wellknown policy arn
+    policyArn: arn:aws:iam::aws:policy/AmazonEKSServicePolicy
+
+  providerConfigRef:
+    name: aws-provider-config
+  deletionPolicy: Delete
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRolePolicyAttachment
+metadata:
+  name: this-role-clusterpolicy
+spec:
+  forProvider:
+    roleNameRef:
+      name: this-eks-iam-role
+    # wellknown policy arn
+    policyArn: arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+
+  providerConfigRef:
+    name: aws-provider-config
+  deletionPolicy: Delete

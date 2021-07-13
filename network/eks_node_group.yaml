@@ -1,0 +1,103 @@
+---
+apiVersion: eks.aws.crossplane.io/v1alpha1
+kind: NodeGroup
+metadata:
+  name: this-eks-node-group
+spec:
+  forProvider:
+    region: us-east-1
+    clusterNameRef:
+      name: this-eks-cluster
+    subnetRefs:
+      - name: this-subnet-a
+      - name: this-subnet-b
+      - name: this-subnet-c
+
+    instanceTypes: ["t3.medium"]
+    amiType: "AL2_x86_64"
+    diskSize: 20
+
+    scalingConfig:
+      desiredSize: 2
+      maxSize: 2
+      minSize: 2
+
+
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider-config
+
+---
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRole
+metadata:
+  labels:
+    provider: aws
+  name: this-node-group-iam-role
+spec:
+  forProvider:
+    assumeRolePolicyDocument: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
+
+  providerConfigRef:
+    name: aws-provider-config
+  deletionPolicy: Delete
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRolePolicyAttachment
+metadata:
+  name: this-role-worker-node-policy
+spec:
+  forProvider:
+    roleNameRef:
+      name: this-node-group-iam-role
+    # wellknown policy arn
+    policyArn: arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+
+  providerConfigRef:
+    name: aws-provider-config
+  deletionPolicy: Delete
+
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRolePolicyAttachment
+metadata:
+  name: this-role-cni-policy
+spec:
+  forProvider:
+    roleNameRef:
+      name: this-node-group-iam-role
+    # wellknown policy arn
+    policyArn: arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+
+  providerConfigRef:
+    name: aws-provider-config
+  deletionPolicy: Delete
+
+---
+apiVersion: identity.aws.crossplane.io/v1beta1
+kind: IAMRolePolicyAttachment
+metadata:
+  name: this-role-ec2-container-registry-read-only
+spec:
+  forProvider:
+    roleNameRef:
+      name: this-node-group-iam-role
+    # wellknown policy arn
+    policyArn: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+
+  providerConfigRef:
+    name: aws-provider-config
+  deletionPolicy: Delete
