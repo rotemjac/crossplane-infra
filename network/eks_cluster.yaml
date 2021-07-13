@@ -51,9 +51,9 @@ spec:
     diskSize: 20
 
     scalingConfig:
-      - desiredSize: 2
-      - maxSize: 2
-      - minSize: 2
+      desiredSize: 2
+      maxSize: 2
+      minSize: 2
 
 
   deletionPolicy: Delete

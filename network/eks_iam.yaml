@@ -35,7 +35,7 @@ spec:
       name: this-eks-iam-role
     # wellknown policy arn
     policyArn: arn:aws:iam::aws:policy/AmazonEKSServicePolicy
-  reclaimPolicy: Delete
+  deletionPolicy: Delete
   providerRef:
     name: aws-provider
 ---
@@ -49,6 +49,6 @@ spec:
       name: this-eks-iam-role
     # wellknown policy arn
     policyArn: arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
-  reclaimPolicy: Delete
+  deletionPolicy: Delete
   providerRef:
     name: aws-provider
