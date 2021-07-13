@@ -22,12 +22,14 @@ spec:
       maxSize: 2
       minSize: 2
 
+    nodeRoleRef:
+      name: this-node-group-iam-role
+
 
   deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider-config
 
----
 ---
 apiVersion: identity.aws.crossplane.io/v1beta1
 kind: IAMRole
