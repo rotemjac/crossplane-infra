@@ -30,10 +30,11 @@ kind: IAMRolePolicyAttachment
 metadata:
   name: this-role-servicepolicy
 spec:
-  roleNameRef:
-    name: this-eks-iam-role
-  # wellknown policy arn
-  policyArn: arn:aws:iam::aws:policy/AmazonEKSServicePolicy
+  forProvider:
+    roleNameRef:
+      name: this-eks-iam-role
+    # wellknown policy arn
+    policyArn: arn:aws:iam::aws:policy/AmazonEKSServicePolicy
   reclaimPolicy: Delete
   providerRef:
     name: aws-provider
@@ -43,10 +44,11 @@ kind: IAMRolePolicyAttachment
 metadata:
   name: this-role-clusterpolicy
 spec:
-  roleNameRef:
-    name: this-eks-iam-role
-  # wellknown policy arn
-  policyArn: arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+  forProvider:
+    roleNameRef:
+      name: this-eks-iam-role
+    # wellknown policy arn
+    policyArn: arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
   reclaimPolicy: Delete
   providerRef:
     name: aws-provider
