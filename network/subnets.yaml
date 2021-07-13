@@ -9,6 +9,7 @@ spec:
     vpcIdRef:
       name: this-vpc
     availabilityZone: us-east-1a
+    mapPublicIPOnLaunch: true
   deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider-config
@@ -23,6 +24,7 @@ spec:
     vpcIdRef:
       name: this-vpc
     availabilityZone: us-east-1b
+    mapPublicIPOnLaunch: true
   deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider-config
@@ -38,6 +40,7 @@ spec:
     vpcIdRef:
       name: this-vpc
     availabilityZone: us-east-1c
+    mapPublicIPOnLaunch: true
   deletionPolicy: Delete
   providerConfigRef:
     name: aws-provider-config
