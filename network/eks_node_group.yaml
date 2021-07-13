@@ -25,6 +25,8 @@ spec:
     nodeRoleRef:
       name: this-node-group-iam-role
 
+  tags:
+    kubernetes.io/cluster/this-eks-cluster: owned
 
   deletionPolicy: Delete
   providerConfigRef:
