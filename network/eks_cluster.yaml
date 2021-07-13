@@ -9,7 +9,7 @@ spec:
 
     resourcesVpcConfig:
       endpointPrivateAccess: false
-      enpointPublicAccess: true
+      #enpointPublicAccess: true
       subnetIdRefs:
         - name: this-subnet-a
         - name: this-subnet-b
@@ -17,13 +17,13 @@ spec:
 
       publicAccessCidrs : ["0.0.0.0/0"]
 
-    roleARNRef:
+    roleArnRef:
       name: this-eks-iam-role
 
     logging:
       clusterLogging:
-        enabled: true
-        types: ["api","audit","authenticator","controllerManager","scheduler"]
+        - enabled: true
+         - types: ["api","audit","authenticator","controllerManager","scheduler"]
 
     version : "1.19"
 
