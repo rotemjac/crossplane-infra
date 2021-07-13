@@ -23,7 +23,7 @@ spec:
     logging:
       clusterLogging:
         - enabled: true
-         - types: ["api","audit","authenticator","controllerManager","scheduler"]
+        - types: ["api","audit","authenticator","controllerManager","scheduler"]
 
     version : "1.19"
 
