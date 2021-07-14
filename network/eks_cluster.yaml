@@ -28,6 +28,9 @@ spec:
     version : "1.19"
 
   deletionPolicy: Delete
+  writeConnectionSecretToRef:
+    name: cluster-conn
+    namespace: default
   providerConfigRef:
     name: aws-provider-config
 
