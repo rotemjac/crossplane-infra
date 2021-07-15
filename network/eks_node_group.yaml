@@ -6,9 +6,9 @@ metadata:
 spec:
   forProvider:
 
-    labels:
-      k8s.io/cluster-autoscaler/enabled=true
-      k8s.io/cluster-autoscaler/this-eks-cluster
+    #labels:
+    #  k8s.io/cluster-autoscaler/enabled=true
+    #  k8s.io/cluster-autoscaler/this-eks-cluster
 
     tags:
       kubernetes.io/cluster/this-eks-cluster: owned
