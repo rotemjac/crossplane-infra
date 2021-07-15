@@ -5,6 +5,14 @@ metadata:
   name: this-eks-node-group
 spec:
   forProvider:
+
+    labels:
+      k8s.io/cluster-autoscaler/enabled=true
+      k8s.io/cluster-autoscaler/this-eks-cluster
+
+    tags:
+      kubernetes.io/cluster/this-eks-cluster: owned
+
     region: us-east-1
     clusterNameRef:
       name: this-eks-cluster
@@ -13,9 +21,15 @@ spec:
       - name: this-subnet-b
       - name: this-subnet-c
 
+    # K8S version
+    version: "1.19"
+
+    diskSize: 20
     instanceTypes: ["t3.medium"]
     amiType: "AL2_x86_64"
-    diskSize: 20
+
+    # The AMI version of the Amazon EKS-optimized AMI to use with your node group. By default, the latest available AMI version for the node group's current Kubernetes version is used. For more information, see Amazon EKS-Optimized Linux AMI Versions (https://docs.aws.amazon.com/eks/latest/userguide/eks-linux-ami-versions.html) in the Amazon EKS User Guide.
+    releaseVersion: ""
 
     scalingConfig:
       desiredSize: 2
@@ -24,9 +38,6 @@ spec:
 
     nodeRoleRef:
       name: this-node-group-iam-role
-
-    tags:
-      kubernetes.io/cluster/this-eks-cluster: owned
 
   deletionPolicy: Delete
   providerConfigRef:
