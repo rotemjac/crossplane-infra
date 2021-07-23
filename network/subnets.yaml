@@ -7,7 +7,7 @@ spec:
   forProvider:
     cidrBlock: 192.168.64.0/18
     vpcIdRef:
-      name: this-vpc
+      name: this-public-vpc
     availabilityZone: us-east-1a
     mapPublicIPOnLaunch: true
   deletionPolicy: Delete
@@ -22,7 +22,7 @@ spec:
   forProvider:
     cidrBlock: 192.168.128.0/18
     vpcIdRef:
-      name: this-vpc
+      name: this-public-vpc
     availabilityZone: us-east-1b
     mapPublicIPOnLaunch: true
   deletionPolicy: Delete
@@ -38,7 +38,7 @@ spec:
   forProvider:
     cidrBlock: 192.168.192.0/18
     vpcIdRef:
-      name: this-vpc
+      name: this-public-vpc
     availabilityZone: us-east-1c
     mapPublicIPOnLaunch: true
   deletionPolicy: Delete

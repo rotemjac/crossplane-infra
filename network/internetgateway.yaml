@@ -8,7 +8,7 @@ metadata:
 spec:
   forProvider:
     vpcIdRef:
-      name: this-vpc
+      name: this-public-vpc
   providerConfigRef:
     name: aws-provider-config
   deletionPolicy: Delete
